@@ -1,0 +1,42 @@
+{
+  "name":"serial_settings",
+  "desc":"serial_settings",
+  "props": [
+    {
+      "name":"port",
+      "type":"char*",
+      "desc": "serial port"
+    },
+    {
+      "name":"baud_rate",
+      "type":"int32_t",
+      "desc": "baud rate"
+    },
+    {
+      "name":"byte_size",
+      "type":"int32_t",
+      "desc": "byte size"
+    },
+    {
+      "name":"stop_bits",
+      "type":"int32_t",
+      "desc": "stop bits"
+    },
+    {
+      "name":"flow_control",
+      "type":"int32_t",
+      "desc": "flow control"
+    },
+    {
+      "name":"parity",
+      "type":"int32_t",
+      "desc": "parity"
+    }
+  ],
+  "cmds": [
+    {
+      "name":"apply",
+      "desc":"apply the settings"
+    }
+  ]
+}

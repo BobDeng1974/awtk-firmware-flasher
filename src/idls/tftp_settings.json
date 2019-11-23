@@ -1,0 +1,23 @@
+{
+  "name":"tftp_settings",
+  "desc":"tftp_settings",
+  "props": [
+    {
+      "name":"ips",
+      "type":"char*",
+      "desc": "ip list of this host"
+    },
+    {
+      "name":"port",
+      "type":"int32_t",
+      "desc": "tftp port",
+      "defvalue": 69
+    }
+  ],
+  "cmds": [
+    {
+      "name":"apply",
+      "desc":"apply the settings"
+    }
+  ]
+}

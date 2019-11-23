@@ -1,0 +1,24 @@
+<dialog v-model="tftp_settings" w="320" h="200">
+  <dialog_title x="0" y="0" w="100%" h="30" text="TFTP Settings" >
+    <draggable drag_dialog="true"/>
+  </dialog_title>
+
+  <dialog_client x="0" y="bottom" w="100%" h="-30">
+    <grid w="100%" h="-40" children_layout="default(r=2,c=1,m=20,s=10)">
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%" text="IP:"/>
+        <label w="70%" style:text_align_h="left" text="localhost" v-data:text="{ips}" />
+      </row>
+
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Port:"/>
+        <edit w="70%" input-type="uint" v-data:text="{port, Trigger=Explicit}" />
+      </row>
+    </grid>
+
+    <row y="bottom:10" h="40" w="100%" children_layout="default(r=1,c=2,m=5,s=10)">
+      <button text="OK" v-on:click="{apply, CloseWindow=true, UpdateModel=True}"/>
+      <button text="Cancel" v-on:click="{nothing, CloseWindow=true}"/>
+    </row>
+ </dialog_client>
+</dialog>

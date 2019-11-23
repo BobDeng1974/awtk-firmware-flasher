@@ -1,0 +1,26 @@
+{
+  "name":"flashing",
+  "desc":"flashing",
+  "props": [
+    {
+      "name":"progress",
+      "type":"int32_t",
+      "desc": "flashing progress"
+    },
+    {
+      "name":"status",
+      "type":"char*",
+      "desc": "status text"
+    }
+  ],
+  "cmds": [
+    {
+      "name":"go",
+      "desc":"start to flash"
+    },
+    {
+      "name":"cancel",
+      "desc":"stop to flash"
+    }
+  ]
+}

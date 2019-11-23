@@ -1,0 +1,44 @@
+<dialog v-model="serial_settings" w="320" h="360">
+  <dialog_title x="0" y="0" w="100%" h="30" text="Serial Settings" >
+    <draggable drag_dialog="true"/>
+  </dialog_title>
+
+  <dialog_client x="0" y="bottom" w="100%" h="-30">
+    <grid w="100%" h="-40" children_layout="default(r=6,c=1,m=10,s=5)">
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Port:"/>
+        <combo_box w="70%" readonly="true" v-data:options="{ports}" v-data:value="{port, Trigger=Explicit}"/>
+      </row>
+
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Baud Rate:"/>
+        <combo_box w="70%" readonly="true" options="38400:38400;56000:56000;57600:57600;115200:115200;230400:230400;460800:460800;921600:921600" v-data:value="{baud_rate, Trigger=Explicit}"/>
+      </row>
+      
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Byte Size:"/>
+        <combo_box w="70%" readonly="true" options="5:5;6:6;7:7;8:8" v-data:value="{byte_size, Trigger=Explicit}"/>
+      </row>
+      
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Stop Bits:"/>
+        <combo_box w="70%" readonly="true" options="1:1;2:2" v-data:value="{stop_bits, Trigger=Explicit}"/>
+      </row>
+      
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Flow Control:"/>
+        <combo_box w="70%" readonly="true" options="0:none;1:software;2:hardware" v-data:value="{flow_control, Trigger=Explicit}"/>
+      </row>
+      
+      <row children_layout="default(r=1,c=0,m=5,s=10)">
+        <label w="30%"text="Parity:"/>
+        <combo_box w="70%" readonly="true" options="0:none;1:odd;2:even" v-data:value="{parity, Trigger=Explicit}"/>
+      </row>
+    </grid>
+
+    <row y="bottom:10" h="40" w="100%" children_layout="default(r=1,c=2,m=5,s=10)">
+      <button text="OK" v-on:click="{apply, CloseWindow=true, UpdateModel=True}"/>
+      <button text="Cancel" v-on:click="{nothing, CloseWindow=true}"/>
+    </row>
+ </dialog_client>
+</dialog>

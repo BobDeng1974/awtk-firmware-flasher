@@ -1,0 +1,30 @@
+{
+  "name":"firmware_flash",
+  "desc":"firmware_flash",
+  "props": [
+    {
+      "name":"flash_type",
+      "type":"int32_t",
+      "desc": "flash type, such as tftp/serial(ymodem)"
+    },
+    {
+      "name":"filename",
+      "type":"char*",
+      "desc": "firmware filename"
+    }
+  ],
+  "cmds": [
+    {
+      "name":"choose",
+      "desc":"choose the firmware file"
+    },
+    {
+      "name":"settings",
+      "desc":"settings for the flash type"
+    },
+    {
+      "name":"go",
+      "desc":"start to flash"
+    }
+  ]
+}
