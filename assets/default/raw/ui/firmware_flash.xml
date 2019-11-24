@@ -4,6 +4,10 @@
     <combo_box readonly="true" options="0:tftp;1:serial(ymodem)" v-data:value="{flash_type}"/>
     <button text="Choose..." v-on:click="{choose}"/>
     <button text="Settings..." v-on:click="{settings}"/>
-    <button text="Go" v-on:click="{go}"/>
+
+    <row children_layout="default(r=1,c=2,m=0,s=10)">
+      <button text="Go" v-on:click="{go}"/>
+      <button text="Quit" v-on:click="{nothing, QuitApp=true}"/>
+    </row>
   </grid>
 </window>

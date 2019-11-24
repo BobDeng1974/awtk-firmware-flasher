@@ -1,5 +1,6 @@
 ﻿#include "tkc/mem.h"
 #include "serial_settings.h"
+#include "common/list_ports.h"
 #include "common/firmware_flasher.h"
 #include "mvvm/base/utils.h"
 #include "tkc/utils.h"
@@ -40,7 +41,13 @@ static ret_t serial_settings_view_model_get_prop(object_t *obj,
   if (tk_str_eq("port", name)) {
     value_set_str(v, serial_settings->port.str);
   } else if (tk_str_eq("ports", name)) {
-    value_set_str(v, "COM1;COM2;COM3");
+    str_t ports;
+    str_init(&ports, 200);
+
+    serial_ports_list(&ports);
+    value_dup_str(v, ports.str);
+    str_reset(&ports);
+
   } else if (tk_str_eq("baud_rate", name)) {
     value_set_int32(v, serial_settings->baud_rate);
   } else if (tk_str_eq("byte_size", name)) {

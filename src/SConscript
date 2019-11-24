@@ -24,7 +24,7 @@ sources=[
   "flashers/common/progress.c",
   "flashers/common/platform.c",
   "flashers/common/url.c",
-] + Glob("common/*.c") + Glob("view_models/*.c");
+] + Glob("common/*.c") + Glob("common/*.cpp") + Glob("view_models/*.c");
 
 if OS_NAME == 'Windows':
   sources+=['flashers/serial/src/impl/win.cc', 'flashers/serial/src/impl/list_ports/list_ports_win.cc']
