@@ -60,6 +60,9 @@ stream_t *stream_serial_create(const char *port, uint32_t baudrate,
   stream->stream.write = stream_serial_write;
   stream->stream.flush = stream_serial_flush;
   stream->stream.close = stream_serial_close;
+  stream->dev->flush();
+  stream->dev->flushInput();
+  stream->dev->flushOutput();
 
   return (stream_t *)stream;
 }

@@ -9,11 +9,13 @@ using serial::stopbits_t;
 
 int main(int argc, char *argv[]) {
   const char* device = NULL;
-  if (argc < 2) {
-    printf("Usage: %s device\n", argv[0]);
+  const char* filename = NULL;
+  if (argc < 3) {
+    printf("Usage: %s device filename\n", argv[0]);
     return 0;
   }
   device = argv[1];
+  filename = argv[2];
 
   uint32_t baudrate = 115200;
   parity_t parity = serial::parity_odd;
@@ -27,20 +29,19 @@ int main(int argc, char *argv[]) {
          device, (int)baudrate, (int)bytesize, (int)parity, (int)stopbits,
          (int)flowcontrol);
 
-  uint32_t size = 1024 * 1024 * 8;
-  uint8_t* buff = (uint8_t*)malloc(size);
+  uint32_t size = 0;
+  uint8_t* buff = (uint8_t*)file_read(filename, &size);
+
   if(buff != NULL) { 
-    int32_t ret = 0;
+    const char* msg = NULL;
     char filename[FYMODEM_FILE_NAME_MAX_LENGTH];
 
     memset(buff, 0x00, size);
     memset(filename, 0x00, sizeof(filename));
-    ret = fymodem_receive(s, buff, size, filename);
-    if(ret > 0) {
-      file_write(filename, buff, ret);
-      log_debug("write to %s\n", filename);
+    if(fymodem_send(s, buff, size, filename, &msg)) {
+      log_debug("send ok\n");
     } else {
-      log_debug("receive failed\n");
+      log_debug("send fail: %s\n", msg);
     }
     free(buff);
   }

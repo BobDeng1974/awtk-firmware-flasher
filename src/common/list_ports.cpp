@@ -8,9 +8,12 @@ extern "C" ret_t serial_ports_list(str_t* str) {
     str_append(str, ports[i].port.c_str());
     str_append(str, ";");
   }
-#ifndef WIN32
+#if defined(MACOS)
   str_append(str, "/dev/ttys008;");
   str_append(str, "/dev/ttys009;");
+#elif defined(LINUX)  
+  str_append(str, "/dev/pts/4;");
+  str_append(str, "/dev/pts/5;");
 #endif/*WIN32*/
 
   return RET_OK;

@@ -118,7 +118,7 @@ ret_t firmware_flasher_init(void) {
 
   memset(&s_flasher, 0x00, sizeof(s_flasher));
 
-  serial_settings->parity = 0;
+  serial_settings->parity = 1;
   serial_settings->byte_size = 8;
   serial_settings->stop_bits = 1;
   serial_settings->flow_control = 0;
