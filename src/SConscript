@@ -39,5 +39,5 @@ print(sources);
 env.Library(os.path.join(LIB_DIR, 'awtk_flasher'), sources);
 env.Program(os.path.join(BIN_DIR, 'awtk_flasher'), Glob('application.c'), LIBS=['awtk_flasher'] + env['LIBS']);
 
-env.Program(os.path.join(BIN_DIR, 'tftp_client'), Glob('flashers/tftp/client.c'), LIBS=['awtk_flasher'] + env['LIBS']);
+env.Program(os.path.join(BIN_DIR, 'tftp_get'), Glob('flashers/tftp/tftp_get.c'), LIBS=['awtk_flasher'] + env['LIBS']);
 

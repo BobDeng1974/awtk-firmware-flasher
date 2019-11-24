@@ -1,8 +1,9 @@
-﻿#include "tkc/mem.h"
-#include "flashing.h"
+﻿#include "flashing.h"
 #include "mvvm/base/utils.h"
+#include "mvvm/base/navigator.h"
 #include "base/timer.h"
 #include "tkc/utils.h"
+#include "tkc/mem.h"
 #include "common/firmware_flasher.h"
 
 /***************flashing_view_model***************/
@@ -33,7 +34,7 @@ static bool_t flashing_view_model_can_exec(object_t *obj, const char *name,
   if (tk_str_eq("go", name)) {
     return !firmware_flasher_is_flashing();
   } else if (tk_str_eq("cancel", name)) {
-    return firmware_flasher_is_flashing();
+    return TRUE;
   } else {
     return FALSE;
   }
@@ -45,7 +46,11 @@ static ret_t flashing_view_model_exec(object_t *obj, const char *name,
     firmware_flasher_start_flash();
     return RET_OBJECT_CHANGED;
   } else if (tk_str_eq("cancel", name)) {
-    firmware_flasher_cancel_flash();
+    if(firmware_flasher_is_flashing()) {
+      firmware_flasher_cancel_flash();
+    } else {
+      navigator_back();
+    }
     return RET_OBJECT_CHANGED;
   } else {
     log_debug("not found %s\n", name);
