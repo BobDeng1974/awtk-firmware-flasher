@@ -62,6 +62,18 @@ static ret_t firmware_flasher_gen_url(firmware_flasher_t* flasher, str_t* str) {
     str_append(str, "serial(ymodem)://localhost/");
     str_append(str, flasher->filename.str);
     str_append(str, "?");
+    str_append(str, "baudrate=");
+    str_append_int(str, s_flasher.serial_settings.baud_rate);
+    str_append(str, "&parity=");
+    str_append_int(str, s_flasher.serial_settings.parity);
+    str_append(str, "&bytesize=");
+    str_append_int(str, s_flasher.serial_settings.byte_size);
+    str_append(str, "&flowcontrol=");
+    str_append_int(str, s_flasher.serial_settings.flow_control);
+    str_append(str, "&stopbits=");
+    str_append_int(str, s_flasher.serial_settings.stop_bits);
+    str_append(str, "&device=");
+    str_append(str, s_flasher.serial_settings.port.str);
   }
 
   return RET_OK;

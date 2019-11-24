@@ -41,3 +41,6 @@ env.Program(os.path.join(BIN_DIR, 'awtk_flasher'), Glob('application.c'), LIBS=[
 
 env.Program(os.path.join(BIN_DIR, 'tftp_get'), Glob('flashers/tftp/tftp_get.c'), LIBS=['awtk_flasher'] + env['LIBS']);
 
+env.Program(os.path.join(BIN_DIR, 'serial_receive'), Glob('flashers/tools/serial_receive.cpp'), 
+  LIBS=['awtk_flasher'] + env['LIBS']);
+

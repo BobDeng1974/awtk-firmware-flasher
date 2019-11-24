@@ -1,13 +1,14 @@
 <dialog v-model="serial_settings" w="480" h="360">
   <dialog_title x="0" y="0" w="100%" h="30" text="Serial Settings" >
-    <draggable drag_dialog="true"/>
+    <draggable drag_window="true"/>
   </dialog_title>
 
   <dialog_client x="0" y="bottom" w="100%" h="-30">
     <grid w="100%" h="-40" children_layout="default(r=6,c=1,m=10,s=5)">
       <row children_layout="default(r=1,c=0,m=5,s=10)">
         <label w="30%"text="Port:"/>
-        <combo_box w="70%" readonly="true" v-data:options="{ports}" v-data:value="{port, Trigger=Explicit}"/>
+        <combo_box readonly="true" w="70%" v-data:options="{ports}" 
+          v-data:text="{port, Trigger=Explicit}"/>
       </row>
 
       <row children_layout="default(r=1,c=0,m=5,s=10)">

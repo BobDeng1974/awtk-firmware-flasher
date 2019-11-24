@@ -1,6 +1,6 @@
 <dialog v-model="flashing" w="320" h="240">
   <dialog_title x="0" y="0" w="100%" h="30" text="Flashing..." >
-    <draggable drag_dialog="true"/>
+    <draggable drag_window="true"/>
   </dialog_title>
 
   <dialog_client x="0" y="bottom" w="100%" h="-30">
