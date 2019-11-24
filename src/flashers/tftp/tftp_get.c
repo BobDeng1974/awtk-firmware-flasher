@@ -67,7 +67,7 @@ void do_get(char *remote_file, char *local_file) {
   snd_packet.cmd = htons(CMD_RRQ);
   char *data = snd_packet.filename;
   sprintf(data, "%s%c%s%c%d%c", remote_file, 0, "octet", 0, blocksize, 0);
-  sendto(sock, &snd_packet, sizeof(struct tftpx_packet), 0,
+  sendto(sock, (const char*)&snd_packet, sizeof(struct tftpx_packet), 0,
          (struct sockaddr *)&server, addr_len);
 
   FILE *fp = fopen(local_file, "w");
@@ -82,7 +82,7 @@ void do_get(char *remote_file, char *local_file) {
     for (time_wait_data = 0; time_wait_data < PKT_RCV_TIMEOUT * PKT_MAX_RXMT;
          time_wait_data += 10000) {
       // Try receive(Nonblock receive).
-      r_size = recvfrom(sock, &rcv_packet, sizeof(struct tftpx_packet),
+      r_size = recvfrom(sock, (char*)&rcv_packet, sizeof(struct tftpx_packet),
                         MSG_DONTWAIT, (struct sockaddr *)&sender, &addr_len);
       if (r_size > 0 && r_size < 4) {
         printf("Bad packet: r_size=%d\n", r_size);
@@ -93,7 +93,7 @@ void do_get(char *remote_file, char *local_file) {
                r_size - 4);
         // Send ACK.
         snd_packet.block = rcv_packet.block;
-        sendto(sock, &snd_packet, sizeof(struct tftpx_packet), 0,
+        sendto(sock, (char*)&snd_packet, sizeof(struct tftpx_packet), 0,
                (struct sockaddr *)&sender, addr_len);
         fwrite(rcv_packet.data, 1, r_size - 4, fp);
         break;

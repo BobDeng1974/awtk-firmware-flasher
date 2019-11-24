@@ -8,12 +8,14 @@
  */
 
 #include "serial/serial.h"
+#include <windows.h>
 #include <cstring>
 #include <devguid.h>
 #include <initguid.h>
 #include <setupapi.h>
 #include <tchar.h>
-#include <windows.h>
+
+#pragma comment (lib, "Setupapi.lib")
 
 using serial::PortInfo;
 using std::string;
