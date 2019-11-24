@@ -7,17 +7,6 @@
 BEGIN_C_DECLS
 
 /**
- * @class flashing_t
- *
- * flashing
- *
- */
-typedef struct _flashing_t {
-  int32_t progress;
-  str_t status;
-} flashing_t;
-
-/**
  * @class flashing_view_model_t
  *
  * view model of flashing
@@ -26,8 +15,8 @@ typedef struct _flashing_t {
 typedef struct _flashing_view_model_t {
   view_model_t view_model;
 
-  /*model object*/
-  flashing_t *flashing;
+  str_t status;
+  uint32_t timer_id;
 } flashing_view_model_t;
 
 /**

@@ -1,7 +1,8 @@
 import os
 import sys
+import platform
 
-OS_NAME = os.name;
+OS_NAME = platform.system();
 
 env=DefaultEnvironment().Clone()
 
@@ -32,6 +33,11 @@ elif OS_NAME == 'Linux':
 elif OS_NAME == 'Darwin':
   sources+=['flashers/serial/src/impl/unix.cc', 'flashers/serial/src/impl/list_ports/list_ports_osx.cc']
 
+print(OS_NAME)
+print(sources);
+
 env.Library(os.path.join(LIB_DIR, 'awtk_flasher'), sources);
 env.Program(os.path.join(BIN_DIR, 'awtk_flasher'), Glob('application.c'), LIBS=['awtk_flasher'] + env['LIBS']);
+
+env.Program(os.path.join(BIN_DIR, 'tftp_client'), Glob('flashers/tftp/client.c'), LIBS=['awtk_flasher'] + env['LIBS']);
 

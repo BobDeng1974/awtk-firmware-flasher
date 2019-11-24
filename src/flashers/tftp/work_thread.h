@@ -4,6 +4,8 @@
  * File: work_thread.h
  *********************************************/
 
+#include "tftpx.h"
+
 void *work_thread(void *arg);
 
 int send_ack(int sock, struct tftpx_packet *packet, int size);

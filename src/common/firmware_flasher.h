@@ -22,6 +22,8 @@
 #ifndef TK_FIRMWARE_FLASHER_H
 #define TK_FIRMWARE_FLASHER_H
 
+#include "tkc/thread.h"
+#include "transferer_factory.h"
 #include "common/types_def.h"
 
 BEGIN_C_DECLS
@@ -37,6 +39,9 @@ typedef struct _firmware_flasher_t {
   flash_type_t flash_type;
   tftp_settings_t tftp_settings;
   serial_settings_t serial_settings;
+
+  tk_thread_t* worker;
+  transferer_t *transferer;
 } firmware_flasher_t;
 
 /**
@@ -50,6 +55,7 @@ ret_t firmware_flasher_init(void);
 ret_t firmware_flasher_start_flash(void);
 ret_t firmware_flasher_cancel_flash(void);
 bool_t firmware_flasher_is_ready_to_flash(void);
+bool_t firmware_flasher_is_flashing(void);
 
 ret_t firmware_flasher_set_flash_type(flash_type_t type);
 ret_t firmware_flasher_set_file_name(value_t *v);
