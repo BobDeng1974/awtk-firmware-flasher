@@ -1,4 +1,4 @@
-# awtk-firmware-flasher
+# awtk-firmware-flasher(not workable yet)
 
 ## 1.介绍
 
